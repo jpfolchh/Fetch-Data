@@ -93,7 +93,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    'https://hn.algolia.com/api/v1/search?query=MIT',
+    'https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=10',
     {
       hits: [],
     }
