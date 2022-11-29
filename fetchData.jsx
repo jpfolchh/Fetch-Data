@@ -1,5 +1,4 @@
 const Pagination = ({ items, pageSize, onPageChange }) => {
-  // Part 2 code goes here
   const { Button } = ReactBootstrap;
   if (items.length <= 1) {return null};
   let num = Math.ceil(items.length / pageSize);
@@ -86,7 +85,6 @@ const dataFetchReducer = (state, action) => {
   }
 };
 
-// App that gets data from Hacker News url
 function App() {
   const { Fragment, useState, useEffect, useReducer } = React;
   const [query, setQuery] = useState('MIT');
