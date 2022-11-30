@@ -87,7 +87,7 @@ const dataFetchReducer = (state, action) => {
 
 function App() {
   const { Fragment, useState, useEffect, useReducer } = React;
-  const [query, setQuery] = useState('MIT');
+  const [query, setQuery] = useState(25);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
@@ -106,10 +106,26 @@ function App() {
   }
   return (
     <Fragment>
-      {isLoading ? (
+        <form
+          onSubmit={event => {
+            doFetch("https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=${query}");
+            event.preventDefault();
+          }}
+        >
+          <h3>How many random dog facts would you like to get?</h3>
+          <input
+            type="text"
+            value={query}
+            onChange={event => setQuery(event.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
+  
+        {isError && <div>Something went wrong ...</div>}
+  
+        {isLoading ? (
         <div>Loading ...</div>
       ) : (
-        // Part 1, step 2 code goes here
         <ul className="list-group">
           {page.map((item) => (
             <li className="list-group-item" key={item.objectID}>
